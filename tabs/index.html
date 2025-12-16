@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Animated Tabs</title>
+    <link rel="stylesheet" href="tabs.css" />
+    <script type="module">
+        import { createTabs } from './tabs.js';
+        createTabs('.tabs'); 
+    </script>
+
+</head>
+
+<body>
+
+    <div class="tabs">
+        <div class="tab-list" role="tablist">
+            <div class="tab active" data-tab="overview">Overview</div>
+            <div class="tab" data-tab="details">Details</div>
+            <div class="tab" data-tab="faq">FAQ</div>
+            <div class="tab-indicator"></div>
+        </div>
+
+        <div class="tab-panels">
+            <div class="tab-panel active" data-panel="overview">
+                <h2>Overview</h2>
+                <p>This is the overview content.</p>
+            </div>
+            <div class="tab-panel" data-panel="details">
+                <h2>Details</h2>
+                <p>This is the details content.</p>
+            </div>
+            <div class="tab-panel" data-panel="faq">
+                <h2>FAQ</h2>
+                <p>This is the FAQ content.</p>
+            </div>
+        </div>
+
+    </div>
+
+
+</body>
+
+</html>
