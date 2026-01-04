@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Animated Tabs</title>
+    <link rel="stylesheet" href="../switch.css" />
+    <script type="module">
+        import Switch from '../switch.js';
+
+        Switch('.switch', {
+            onChange: (state, el) => {
+                console.log('Changed:', el.dataset.name, 'Now:', state);
+            }
+        });
+
+    </script>
+
+</head>
+
+<body>
+    <div class="switch-wrapper">
+
+        <div class="switch" data-name="airplane-mode">
+            <div class="switch-thumb"></div>
+        </div>
+
+        <span class="switch-label">Airplane mode</span>
+    </div></br>
+
+    <div class="switch-wrapper">
+
+        <div class="switch on" data-name="bluetooth">
+            <div class="switch-thumb"></div>
+        </div>
+
+        <span class="switch-label">Bluetooth</span>
+    </div></br>
+
+    <div class="switch-wrapper">
+
+        <div class="switch disabled" data-name="wifi">
+            <div class="switch-thumb"></div>
+        </div>
+
+        <span class="switch-label">Wifi</span>
+    </div>
+
+</body>
+
+</html>
