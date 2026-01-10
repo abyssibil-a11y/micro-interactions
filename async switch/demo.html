@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Animated Tabs</title>
+    <link rel="stylesheet" href="./async-switch.css" />
+    <script type="module">
+        import AsyncSwitch from './async-switch.js';
+        import Toast from './toast.js';
+
+        const showToast = Toast({ duration: 2500 });
+
+
+        // fake API: 800ms delay, 25% failure rate
+        const fakeSave = (nextState, el) =>
+            new Promise((resolve, reject) => {
+                setTimeout(() => {
+                    Math.random() < 0.25 ? reject(new Error("Network error")) : resolve();
+                }, 800);
+            });
+
+        AsyncSwitch('.switch', {
+            save: fakeSave,
+            toast: showToast,
+            onChange: (state, el) => {
+                console.log(el.dataset.name, "is now", state ? "ON" : "OFF");
+            },
+        });
+
+    </script>
+
+</head>
+
+<body>
+    <div class="switch-wrapper">
+
+        <div class="switch" data-name="email-notifs">
+            <div class="switch-thumb"></div>
+        </div>
+
+        <span class="switch-label">Email notifications</span>
+    </div></br>
+
+    <div class="switch-wrapper">
+
+        <div class="switch" data-name="sms-notifs">
+            <div class="switch-thumb"></div>
+        </div>
+
+        <span class="switch-label">SMS notifications</span>
+    </div>
+
+</body>
+
+</html>
