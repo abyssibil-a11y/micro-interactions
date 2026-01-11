@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Loading Button</title>
+    <link rel="stylesheet" href="./loading-button.css" />
+    <script type="module">
+        import LoadingButton from './loading-button.js';
+        import Toast from './toast.js';
+
+        const showToast = Toast({ duration: 2500 });
+
+        async function action(buttonEl, event) {
+            await new Promise((resolve) => setTimeout(resolve, 900));
+
+            if (Math.random() < 0.25) {
+                throw new Error('Network error');
+            }
+
+            return { ok: true };
+        }
+
+        LoadingButton('.loading-button', {
+            action,
+            loadingText: 'Loading...',
+            toast: showToast,
+            onSuccess: () => showToast('Data refreshed!', { variant: 'success' }),
+            onError: () => showToast('Failed to refresh. Please try again.', { variant: 'error' }),
+        });
+
+    </script>
+</head>
+
+<body>
+
+    <button class="loading-button">
+        <span class="icon">↻</span>
+        <span class="text">Refresh</span>
+    </button>
+
+</body>
+
+</html>
