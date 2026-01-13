@@ -14,12 +14,13 @@
 
 
         // fake API: 800ms delay, 25% failure rate
-        const fakeSave = (nextState, el) =>
-            new Promise((resolve, reject) => {
-                setTimeout(() => {
-                    Math.random() < 0.25 ? reject(new Error("Network error")) : resolve();
-                }, 800);
-            });
+        async function fakeSave(nextState, el) {
+            await new Promise((resolve) => setTimeout(resolve, 800));
+
+            if (Math.random() < 0.25) {
+                throw new Error('Network error');
+            }
+        }
 
         AsyncSwitch('.switch', {
             save: fakeSave,
