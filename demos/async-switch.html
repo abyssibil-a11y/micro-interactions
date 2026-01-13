@@ -5,21 +5,17 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Async Switch</title>
-    <link rel="stylesheet" href="./async-switch.css" />
+    <link rel="stylesheet" href="../async-switch/async-switch.css" />
     <script type="module">
-        import AsyncSwitch from './async-switch.js';
-        import Toast from './toast.js';
+        import AsyncSwitch from '../async-switch/async-switch.js';
+        import Toast from '../async-switch/toast.js';
+        import { sleep, maybeFail } from '../utils/asyncHelpers.js';
 
         const showToast = Toast({ duration: 2500 });
 
-
-        // fake API: 800ms delay, 25% failure rate
         async function fakeSave(nextState, el) {
-            await new Promise((resolve) => setTimeout(resolve, 800));
-
-            if (Math.random() < 0.25) {
-                throw new Error('Network error');
-            }
+            await sleep(800);
+            maybeFail(0.25);
         }
 
         AsyncSwitch('.switch', {
