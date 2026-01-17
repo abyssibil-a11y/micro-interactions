@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Async Switch</title>
+    <link rel="stylesheet" href="../debounced-input/debounced-input.css" />
+    <script type="module">
+        import DebouncedInput from '../debounced-input/index.js';
+
+        const items = [
+            { id: '1', label: 'Cat' },
+            { id: '2', label: 'Caterpillar' },
+            { id: '3', label: 'Dog' },
+            { id: '4', label: 'Dolphin' },
+        ];
+
+        async function search(query) {
+            await new Promise((r) => setTimeout(r, 500));
+            const q = query.toLowerCase();
+            return items.filter((x) => x.label.toLowerCase().includes(q));
+        }
+
+        DebouncedInput('.debounced-input', {
+            delayMs: 300,
+            minLength: 2,
+            search
+        });
+
+    </script>
+
+</head>
+
+<body>
+    <div class="debounced-input">
+        <input class="input" type="text" placeholder="Type to search…" /></br>
+        <div class="status" aria-live="polite"></div></br>
+        <ul class="results"></ul>
+    </div>
+
+
+</body>
+
+</html>
